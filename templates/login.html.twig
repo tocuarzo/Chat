@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="jumbotron col-4" method="post">
+            <div class="form-row justify-content-center">
+                <h1 class="h1">CHAT</h1>
+            </div>
+            <div class="form-group">
+            <div class="form-row">
+                <input placeholder="Introduce un nombre de usuario" class="form-control" name="user" type="text">
+            </div>
+            </div>
+            <div class="form-group mb-0">
+                <div class="form-row justify-content-center">
+                    <input class="btn btn-success" type="submit" value="COMIENZA A CHATEAR">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

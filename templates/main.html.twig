@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="shadow rounded">Bienvenido: {{ user }}</h1>
+        </div>
+        <div class="row">
+           <div class="col-12">
+               <textarea class="shadow w-100" rows="16" disabled></textarea>
+           </div>
+        </div>
+        <div class="row align-content-center input-group shadow ml-0">
+            <input placeholder="Escriba un buen mensajito hoiga..." id="sms" type="text" class="form-control">
+            <div class="input-group-append">
+                <button class="btn btn-success" id="enviar">enviar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="/logout">Salir</a>
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        recargarMensajes();
+        $("#sms").keypress(function (event) {
+            if ( event.which === 13 ) {
+                event.preventDefault();
+                enviarSMS();
+                $("#sms").val("");
+            }
+        });
+        $("#enviar").click(enviarSMS);
+
+        setInterval(recargarMensajes, 5000);
+
+        function enviarSMS(){
+            var sms = $("#sms").val();
+            if (sms !== "") {
+                $.ajax("{{ path('wsmensajes') }}", {
+                    method: "POST",
+                    data: {mensaje: sms},
+                    success: function (data) {
+                        generarConversacion(data);
+                    }
+                });
+            } else {
+                alert("El campo no puede estar vacio");
+            }
+        }
+        function recargarMensajes(){
+            $.ajax("{{ path('wsmensajes') }}", {
+                method: "GET",
+                success: function (data) {
+                   generarConversacion(data);
+                }
+            });
+        }
+        function generarConversacion(data){
+            var mensajes = JSON.parse(data);
+            var textarea =  $("textarea");
+            textarea.html("");
+            var box = textarea.html();
+            box = "[" + mensajes[0].usuario + "]: " + mensajes[0].mensaje;
+            for (var i = 1; i < mensajes.length; i++){
+                box += "\n[" + mensajes[i].usuario + "]: " + mensajes[i].mensaje;
+                textarea.html(box);
+            }
+            textarea.scrollTop(textarea[0].scrollHeight);
+        }
+    </script>
+{% endblock %}
