@@ -9,5 +9,3 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 ###< intellidea files ###
-.idea
-/.idea
