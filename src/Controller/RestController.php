@@ -34,7 +34,6 @@ class RestController extends Controller
                 case "GET":
                     $mensajes = $em->getRepository(Mensaje::class)->findAll();
                     return new \Symfony\Component\HttpFoundation\Response(Mensaje::toJson($mensajes), 200);
-                    break;
                 case "POST":
                     $mensaje = new Mensaje();
                     $texto = $request->get("mensaje");
@@ -45,11 +44,11 @@ class RestController extends Controller
                     $em->flush();
                     $mensajes = $em->getRepository(Mensaje::class)->findAll();
                     return new \Symfony\Component\HttpFoundation\Response(Mensaje::toJson($mensajes), 200);
-                    break;
                 case "PUT":
                     //TO-DO
                     break;
                 default:
+                    return new \Symfony\Component\HttpFoundation\Response("Method not Allowed", 403);
                     break;
             }
             return new \Symfony\Component\HttpFoundation\Response("", 200);
