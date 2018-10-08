@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class indexController extends AbstractController
 {
     /**
-     * @Route("/main", name="main")
+     * @Route("/main", name="main", methods={"GET"})
      */
     public function main(SessionInterface $session){
         $user = $session->get("user");
@@ -31,7 +31,7 @@ class indexController extends AbstractController
         return $this->render("main.html.twig", array("user" => $user));
     }
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="login", methods={"GET"})
      */
     public function login(SessionInterface $session, Request $request){
         $usersession = $session->get("user");
@@ -45,7 +45,7 @@ class indexController extends AbstractController
         }
     }
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout", name="logout", methods={"GET"})
      */
     public function logout(SessionInterface $session){
         $session->clear();
