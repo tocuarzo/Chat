@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class indexController extends AbstractController
 {
     /**
-     * @Route("/main", name="main", methods={"GET"})
+     * @Route("/main", name="main", methods={"GET","POST"})
      */
     public function main(SessionInterface $session){
         $user = $session->get("user");
