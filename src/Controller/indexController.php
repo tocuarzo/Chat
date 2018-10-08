@@ -41,7 +41,7 @@ class indexController extends AbstractController
             $session->set("user", $userform);
             return $this->redirectToRoute("main");
         } else {
-            return $this->redirectToRoute("index");
+            return $this->render("login.html.twig");
         }
     }
     /**
