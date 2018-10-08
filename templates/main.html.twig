@@ -30,7 +30,6 @@
             if ( event.which === 13 ) {
                 event.preventDefault();
                 enviarSMS();
-                $("#sms").val("");
             }
         });
         $("#enviar").click(enviarSMS);
@@ -45,6 +44,7 @@
                     data: {mensaje: sms},
                     success: function (data) {
                         generarConversacion(data);
+                        $("#sms").val("");
                     }
                 });
             } else {
