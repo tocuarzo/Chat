@@ -49,6 +49,6 @@ class indexController extends AbstractController
      */
     public function logout(SessionInterface $session){
         $session->clear();
-        return $this->redirectToRoute("login");
+        return $this->redirectToRoute("index");
     }
 }
