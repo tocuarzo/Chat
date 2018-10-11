@@ -35,7 +35,9 @@
         $("#enviar").click(enviarSMS);
 
         setInterval(recargarMensajes, 5000);
-
+        window.onunload = function () {
+            $.ajax("{{ path('logout') }}");
+        }
         function enviarSMS(){
             var sms = $("#sms").val();
             if (sms !== "") {
@@ -70,5 +72,6 @@
             }
             textarea.scrollTop(textarea[0].scrollHeight);
         }
+
     </script>
 {% endblock %}
