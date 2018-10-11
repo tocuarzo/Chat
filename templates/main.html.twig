@@ -43,7 +43,7 @@
                     method: "POST",
                     data: {mensaje: sms},
                     success: function (data) {
-                        generarConversacion(data);
+                        recargarMensajes();
                         $("#sms").val("");
                     }
                 });
@@ -62,6 +62,7 @@
         function generarConversacion(data){
             var mensajes = JSON.parse(data);
             var textarea =  $("textarea");
+            textarea.html("");
             var box = textarea.html();
             for (var i = 0; i < mensajes.length; i++){
                 box += "[" + mensajes[i].usuario + "]: " + mensajes[i].mensaje + "\n";

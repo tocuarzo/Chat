@@ -42,8 +42,7 @@ class RestController extends Controller
                     $mensaje->setUsuario($usuario);
                     $em->persist($mensaje);
                     $em->flush();
-                    $mensaje = $em->createQuery('SELECT m FROM App\Entity\Mensaje m where id = (select MAX(ms.id) from App\Entity\Mensaje ms)');
-                    return new \Symfony\Component\HttpFoundation\Response(Mensaje::toJson($mensaje), 200);
+                    return new \Symfony\Component\HttpFoundation\Response("", 200);
                 case "PUT":
                     //TO-DO
                     break;
