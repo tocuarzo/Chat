@@ -62,11 +62,9 @@
         function generarConversacion(data){
             var mensajes = JSON.parse(data);
             var textarea =  $("textarea");
-            textarea.html("");
             var box = textarea.html();
-            box = "[" + mensajes[0].usuario + "]: " + mensajes[0].mensaje;
-            for (var i = 1; i < mensajes.length; i++){
-                box += "\n[" + mensajes[i].usuario + "]: " + mensajes[i].mensaje;
+            for (var i = 0; i < mensajes.length; i++){
+                box += "[" + mensajes[i].usuario + "]: " + mensajes[i].mensaje + "\n";
                 textarea.html(box);
             }
             textarea.scrollTop(textarea[0].scrollHeight);
